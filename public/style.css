@@ -29,6 +29,10 @@ input,
 	border-radius: 10px;
 }
 
+#loading {
+	width: 15vw;
+}
+
 #title {
 	text-decoration: underline;
 }
