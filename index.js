@@ -8,24 +8,24 @@ app.set("view engine", "ejs");
 let leaderboard;
 
 async function leaderboardCache() {
-  console.log("updating leaderboard cache...");
+	console.log("updating leaderboard cache...");
 
-  const response = await fetch(
-    "https://challenge.codewizardshq.com/api/v1/questions/leaderboard?per=99999"
-  );
+	const response = await fetch(
+		"https://challenge.codewizardshq.com/api/v1/questions/leaderboard?per=99999"
+	);
 
-  leaderboard = (await response.json()).items;
+	leaderboard = (await response.json()).items;
 }
 
 leaderboardCache();
 setInterval(leaderboardCache, 100000);
 
 app.get("/", async (req, res) => {
-  console.log("someone visited!");
+	console.log("someone visited!");
 
-  res.render("index", {
-    leaderboard,
-  });
+	res.render("index", {
+		leaderboard,
+	});
 });
 
 app.listen(8080);
