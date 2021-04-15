@@ -14,13 +14,17 @@ function filterUsers() {
 	const regex = new RegExp(search.value, "gi");
 	const filtered = leaderboard.filter((user) => regex.test(user.username));
 
-	let place = 0;
-	const html = filtered.reduce((html, { username, rank }) => {
-		place++;
+	let html;
+	if (filtered.length == 0) {
+		html = "<p>Looks like nothing matched your search...</p>";
+	} else {
+		let place = 0;
+		html = filtered.reduce((html, { username, rank }) => {
+			place++;
 
-		return (
-			html +
-			`
+			return (
+				html +
+				`
 			<div class="user">
 				<p class="username">${username}#${place}</p>
 				
@@ -29,8 +33,9 @@ function filterUsers() {
 				</div>
 			</div>
 			`
-		);
-	}, "");
+			);
+		}, "");
+	}
 
 	users.innerHTML = html;
 }
