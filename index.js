@@ -28,4 +28,19 @@ app.get("/", async (req, res) => {
 	});
 });
 
+app.get("/search", (req, res) => {
+	const query = req.query.q;
+	let results = [];
+
+	leaderboard.forEach((user) => {
+		if (user.username.toLowerCase().includes(query)) {
+			results.push(user);
+		}
+	});
+
+	res.render("index", {
+		leaderboard: results,
+	});
+});
+
 app.listen(8080);

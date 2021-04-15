@@ -14,6 +14,10 @@
 			<h1 id="title">WizardBoard</h1>
 			<h2>A leaderboard for the CodewizardsHQ challenge</h2>
 
+			<form action="/search" method="get">
+				<input type="text" name="q" placeholder="name..." />
+			</form>
+
 			<div id="users">
 				<% leaderboard.forEach(({rank, username}, place)=> { %>
 				<div class="user">
