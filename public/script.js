@@ -1,5 +1,7 @@
 const search = document.getElementById("search");
 const users = document.getElementById("users");
+search.focus();
+
 let leaderboard;
 
 async function main() {
