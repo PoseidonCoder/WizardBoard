@@ -11,10 +11,7 @@ async function main() {
 }
 
 function renderUsers(users) {
-	let place = 0;
-	return users.reduce((html, { username, rank }) => {
-		place++;
-
+	return users.reduce((html, { username, rank, place }) => {
 		return (
 			html +
 			`

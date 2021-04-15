@@ -13,7 +13,11 @@ async function leaderboardCache() {
 		"https://challenge.codewizardshq.com/api/v1/questions/leaderboard?per=99999"
 	);
 
-	leaderboard = (await response.json()).items;
+	const users = (await response.json()).items;
+	leaderboard = users.map((user, place) => {
+		user.place = place + 1;
+		return user;
+	});
 }
 
 leaderboardCache();
