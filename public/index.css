@@ -5,17 +5,29 @@ body {
 	text-align: center;
 }
 
+* {
+	box-sizing: border-box;
+	outline: none;
+	width: 97vw;
+	text-align: center;
+}
+
+input {
+	text-align: left;
+}
+
+input,
+.user {
+	border: 3px solid black;
+	padding: 1%;
+	margin: 1%;
+	border-radius: 10px;
+}
+
 #title {
 	text-decoration: underline;
 }
 
 .username {
 	font-weight: bold;
-}
-
-.user {
-	border-radius: 10px;
-	padding: 1%;
-	border: 3px solid black;
-	margin: 1%;
 }
