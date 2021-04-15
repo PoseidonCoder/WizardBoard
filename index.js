@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 
 app.use(express.static("public"));
-app.set("view engine", "ejs");
 
 let leaderboard;
 
@@ -20,19 +19,6 @@ async function leaderboardCache() {
 leaderboardCache();
 setInterval(leaderboardCache, 100000);
 
-app.get("/", async (req, res) => {
-	console.log("someone visited!");
-
-	let search;
-	if (req.query.q) {
-		const regex = new RegExp(req.query.q, "gi");
-		search = leaderboard.filter(({ username }) => regex.test(username));
-		console.log(search);
-	}
-
-	res.render("index", {
-		leaderboard: typeof search == "undefined" ? leaderboard : search,
-	});
-});
+app.get("/api/v1/leaderboard", (req, res) => res.json(leaderboard));
 
 app.listen(8080);
