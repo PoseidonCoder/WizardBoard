@@ -32,14 +32,10 @@ function filterUsers() {
 	const regex = new RegExp(search.value, "gi");
 	const filtered = leaderboard.filter((user) => regex.test(user.username));
 
-	let html;
-	if (filtered.length == 0) {
-		html = "<p>Looks like nothing matched your search...</p>";
-	} else {
-		html = renderUsers(filtered);
-	}
-
-	users.innerHTML = html;
+	users.innerHTML =
+		filtered.length == 0
+			? "<p>Looks like nothing matched your search...</p>"
+			: renderUsers(filtered);
 }
 
 main();
