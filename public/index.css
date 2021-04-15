@@ -5,6 +5,10 @@ body {
   text-align: center;
 }
 
+#title {
+  text-decoration: underline;
+}
+
 .username {
   font-weight: bold;
 }
