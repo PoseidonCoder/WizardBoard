@@ -23,23 +23,15 @@ setInterval(leaderboardCache, 100000);
 app.get("/", async (req, res) => {
 	console.log("someone visited!");
 
-	res.render("index", {
-		leaderboard,
-	});
-});
-
-app.get("/search", (req, res) => {
-	const query = req.query.q;
-	let results = [];
-
-	leaderboard.forEach((user) => {
-		if (user.username.toLowerCase().includes(query)) {
-			results.push(user);
-		}
-	});
+	let search;
+	if (req.query.q) {
+		const regex = new RegExp(req.query.q, "gi");
+		search = leaderboard.filter(({ username }) => regex.test(username));
+		console.log(search);
+	}
 
 	res.render("index", {
-		leaderboard: results,
+		leaderboard: typeof search == "undefined" ? leaderboard : search,
 	});
 });
 
