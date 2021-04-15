@@ -21,6 +21,8 @@ leaderboardCache();
 setInterval(leaderboardCache, 100000);
 
 app.get("/", async (req, res) => {
+  console.log("someone visited!");
+
   res.render("index", {
     leaderboard,
   });
