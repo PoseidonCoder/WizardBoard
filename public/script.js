@@ -35,7 +35,8 @@ function renderUsers(users) {
 }
 
 function filterUsers() {
-	console.log("searching...");
+	console.time("search");
+
 	const regex = new RegExp(search.value, "gi");
 	const filtered = leaderboard.filter((user) => regex.test(user.username));
 
@@ -43,7 +44,8 @@ function filterUsers() {
 		filtered.length == 0
 			? "<p>Looks like nothing matched your search...</p>"
 			: renderUsers(filtered);
-	console.log("done searching...");
+
+	console.timeEnd("search");
 }
 
 main();
