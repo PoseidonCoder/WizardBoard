@@ -43,7 +43,8 @@ function filterUsers() {
 	users.innerHTML =
 		filtered.length == 0
 			? "<p>Looks like nothing matched your search...</p>"
-			: renderUsers(filtered);
+			: `<p id="resultsAmount">${filtered.length} results</p>` +
+			  renderUsers(filtered);
 
 	console.timeEnd("search");
 }
