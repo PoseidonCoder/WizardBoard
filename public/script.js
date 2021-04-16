@@ -10,6 +10,11 @@ async function main() {
 	users.innerHTML = renderUsers(leaderboard);
 
 	search.addEventListener("keyup", filterUsers);
+	search.addEventListener("input", () => {
+		users.innerHTML = `
+			<img src="./earth.svg" alt="loading..." id="loading" />
+		`;
+	});
 }
 
 function renderUsers(users) {
@@ -38,6 +43,7 @@ function filterUsers() {
 		filtered.length == 0
 			? "<p>Looks like nothing matched your search...</p>"
 			: renderUsers(filtered);
+	console.log("done searching...");
 }
 
 main();
