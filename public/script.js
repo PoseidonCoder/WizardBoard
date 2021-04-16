@@ -9,7 +9,7 @@ async function main() {
 	leaderboard = await response.json();
 	users.innerHTML = renderUsers(leaderboard);
 
-	search.addEventListener("input", filterUsers);
+	search.addEventListener("keyup", filterUsers);
 }
 
 function renderUsers(users) {
