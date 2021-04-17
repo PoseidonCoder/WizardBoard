@@ -32,16 +32,21 @@ function renderUsers(users) {
 function filterUsers() {
 	console.time("search");
 
-	const regex = new RegExp(search.value, "gi");
-	const filtered = leaderboard.filter((user) => regex.test(user.username));
+	const worker = new Worker("./filter.js");
+	worker.postMessage({
+		query: search.value,
+		leaderboard,
+	});
 
-	users.innerHTML =
-		filtered.length == 0
-			? "<p>Looks like nothing matched your search...</p>"
-			: `<p id="resultsAmount">${filtered.length} results</p>` +
-			  renderUsers(filtered);
+	worker.onmessage = ({ data: filtered }) => {
+		users.innerHTML =
+			filtered.length == 0
+				? "<p>Looks like nothing matched your search...</p>"
+				: `<p id="resultsAmount">${filtered.length} results</p>` +
+				  renderUsers(filtered);
 
-	console.timeEnd("search");
+		console.timeEnd("search");
+	};
 }
 
 main();
